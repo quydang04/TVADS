@@ -9,6 +9,16 @@ echo "*                 Linor                   *"
 echo "*******************************************"
 sleep 3
 
+# Check if the virtual environment already exists
+if [ ! -d "venv" ]; then
+    # Create a virtual environment
+    python3 -m venv venv
+fi
+
+# Activate the virtual environment
+source venv/bin/activate
+
+# Check if start.py exists and install necessary packages
 if [ ! -f start.py ]; then
     sudo apt-get update
     sudo apt-get --assume-yes upgrade
@@ -20,6 +30,7 @@ if [ ! -f start.py ]; then
     python3 -m pip install -r re.txt
 fi
 
+# Run the start.py script
 if [ ! -f re ]; then
     python3 start.py -s
 fi
